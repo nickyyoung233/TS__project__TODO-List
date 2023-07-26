@@ -4,7 +4,10 @@
   "description": "little demo using ts",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --watch --open",
+    "dev": "webpack --config webpack.config.js",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",

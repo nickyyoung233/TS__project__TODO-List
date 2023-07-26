@@ -17,4 +17,7 @@ assets/
 ## How to init
 
 1. npm init --y create packge
-2.
+2. npm install webpack webpack-cli webpack-dev-server --D
+3. set `package.json` main removed & add `"private": true,`
+4. create `webpack.config.js` to set `mode===development` configuration
+5. add some scripts to `package.json` to run webpack-dev-server / webpack build..
