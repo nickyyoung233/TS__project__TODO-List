@@ -37,4 +37,5 @@ class BackDrop extends DOMTemplate {
 }
 
 const imgLocation = "../../assets/images/background.jpg";
-export const backDropInstance = BackDrop.getInstance(imgLocation);
+const backDropInstance = BackDrop.getInstance(imgLocation);
+export default backDropInstance;

@@ -1,8 +1,11 @@
 import { RootComponent } from "./components/root-component";
-import { backDropInstance } from "./components/backdrop";
+import backDrop from "./components/backdrop";
+import timeClock from "./components/time-clock";
+
+console.log(timeClock);
 
 const root = RootComponent.getInstance("root");
-root.attach(true, backDropInstance.element);
-backDropInstance.triggerFuzzy(false);
-
-console.log(backDropInstance.class);
+root.attach(true, backDrop.element);
+root.attach(true, timeClock.element);
+timeClock.startTimeChange("localTime", "format-time");
+backDrop.triggerFuzzy(false);
