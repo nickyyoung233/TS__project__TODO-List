@@ -21,36 +21,39 @@ class TimeClock extends DOMTemplate {
 
   startTimeChange(id: string, id2: string) {
     this.time = new Date();
-    const localTime = this.time.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    const localTime = this.setTimeFormat(this.time, false);
+    const localTimeFormat = this.setTimeFormat(this.time, true);
     this.timeDOM = document.getElementById(id)!;
     this.timeFormatDOM = document.getElementById(id2)!;
     //init
     this.timeDOM.innerHTML = localTime;
+    this.timeFormatDOM.innerHTML = localTimeFormat;
 
     this.timer = setInterval(() => {
       const tempTime = new Date();
-      const localTime = tempTime.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
+      const localTime = this.setTimeFormat(tempTime, false);
 
-      if (
-        localTime !==
-        this.time!.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      ) {
-        console.log("lets changed");
+      if (localTime !== this.setTimeFormat(this.time!, false)) {
         this.timeDOM!.innerHTML = localTime;
       }
       this.time = tempTime;
     }, 1000);
   }
-  setTimeFormat() {}
+  setTimeFormat(time: Date, isMonth: boolean) {
+    if (isMonth) {
+      return `${time.toLocaleString("zh-CN", {
+        weekday: "long",
+      })}, ${time.toLocaleString("zh-CN", {
+        month: "long",
+        day: "numeric",
+      })}`;
+    } else {
+      return time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    }
+  }
 }
 const timeClock = TimeClock.getInstance();
 export default timeClock;

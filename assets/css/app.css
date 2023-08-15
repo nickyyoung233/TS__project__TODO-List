@@ -5,6 +5,8 @@
   border-width: 0;
   border-style: solid;
   border-color: #e5e7eb;
+  padding: 0;
+  margin: 0;
 }
 
 html {
@@ -41,6 +43,7 @@ body {
   min-height: 100vh;
 }
 
+/* 背景模块 */
 .backdrop {
   width: 30rem;
   height: 50rem;
@@ -56,6 +59,7 @@ body {
   filter: brightness(1.05);
 }
 
+/* 时间模块 */
 .timer {
   position: absolute;
   display: flex;
@@ -66,8 +70,9 @@ body {
   z-index: 1;
 }
 .local-time {
-  font-size: 10rem;
-  line-height: 12rem;
+  font-size: 9rem;
+  height: 11rem;
+  line-height: 11rem;
   font-family: Didot, Monaco, Garamond, Optima, "Candara", "Courier New",
     Courier, Times, monospace, cursive, fantasy, serif;
   color: #303030;
@@ -78,6 +83,38 @@ body {
   font-family: "Candara", "Courier New", Courier, Times, monospace, cursive,
     fantasy, serif;
   font-weight: 600;
+}
+
+.button {
+  position: absolute;
+  bottom: 10rem;
+  width: 4rem;
+  height: 4rem;
+  z-index: 1;
+  background-color: transparent;
+}
+.button i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+}
+
+/* 按钮模块 */
+.show-button i {
+  background-image: url("../images/001-more.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.add-button i {
+  background-image: url("../images/003-plus.png");
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+}
+.close-button {
+  background-image: url("../images/002-close.png");
+  background-size: 60% 60%;
+  background-repeat: no-repeat;
 }
 
 .done {
