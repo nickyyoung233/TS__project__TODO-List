@@ -1,6 +1,6 @@
 import { DOMTemplate } from "./base-component";
 
-class BackDrop extends DOMTemplate {
+class BackDrop extends DOMTemplate<HTMLDivElement> {
   //single singleton
   private static instance: BackDrop;
   private backImg: string = "";

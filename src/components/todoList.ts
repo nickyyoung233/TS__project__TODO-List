@@ -5,7 +5,7 @@ interface ListItem {
   text: string;
 }
 
-class TodoCommon extends DOMTemplate {
+class TodoCommon extends DOMTemplate<HTMLDivElement> {
   constructor(id: string) {
     super(id);
   }

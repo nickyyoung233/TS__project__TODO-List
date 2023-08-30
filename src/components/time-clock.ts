@@ -1,6 +1,6 @@
 import { DOMTemplate } from "./base-component";
 
-class TimeClock extends DOMTemplate {
+class TimeClock extends DOMTemplate<HTMLDivElement> {
   //single singleton
   timer: any;
   time: Date | null = null;

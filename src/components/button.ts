@@ -1,6 +1,6 @@
 import { DOMTemplate } from "./base-component";
 
-export class Button extends DOMTemplate {
+export class Button extends DOMTemplate<HTMLButtonElement> {
   private _unFocusClass: string;
   constructor(
     private _className: string,
