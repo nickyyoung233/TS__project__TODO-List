@@ -1,27 +1,48 @@
 import { RootComponent } from "./components/root-component";
 import backDrop from "./components/backdrop";
 import timeClock from "./components/time-clock";
+import todoList from "./components/todoList";
 import { Button } from "./components/button";
 
-console.log(timeClock);
-
 const root = RootComponent.getInstance("root");
-const showButton = new Button("show-button", () => {
-  console.log("show");
-});
+let toggle = true;
+const toggleHandler = () => {
+  toggle = !toggle;
+  todoList.triggerTodoType(toggle); //切换代办功能
+  backDrop.triggerFuzzy(toggle); //切换背景功能
+};
+const showButton = new Button(
+  "show-button",
+  () => {
+    toggleHandler();
+    addButton.setActive(true);
+    closeButton.setActive(true);
+    showButton.setActive(false);
+  },
+  true
+);
 const addButton = new Button("add-button", () => {
-  console.log("add");
+  todoList.addItem();
+  todoList.renderList();
+  toggleHandler();
+  showButton.setActive(true);
+  addButton.setActive(false);
+  closeButton.setActive(false);
 });
 const closeButton = new Button("close-button", () => {
-  console.log("close");
+  toggleHandler();
+  showButton.setActive(true);
+  addButton.setActive(false);
+  closeButton.setActive(false);
 });
-console.log(showButton, addButton, closeButton);
 
 root.attach(true, backDrop.element);
 root.attach(true, timeClock.element);
-root.attach(false, showButton.element);
-// root.attach(false, addButton.element);
-// root.attach(false, closeButton.element);
 timeClock.startTimeChange("localTime", "formatTime");
 
-backDrop.triggerFuzzy(false);
+root.attach(false, todoList.todoShow.element);
+root.attach(false, todoList.todoAdd.element);
+
+root.attach(false, showButton.element);
+root.attach(false, addButton.element);
+root.attach(false, closeButton.element);

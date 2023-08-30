@@ -36,11 +36,24 @@ body {
 }
 
 .root {
+  width: 30rem;
+  height: 50rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  margin: 5rem auto;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+input,
+textarea {
+  outline-style: none;
 }
 
 /* 背景模块 */
@@ -85,13 +98,103 @@ body {
   font-weight: 600;
 }
 
+/* 代办模块 */
+.to-do-list-show {
+  position: absolute;
+  top: 16rem;
+  display: flex;
+  flex-direction: column;
+  width: 23rem;
+  height: 12rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+.to-do-title {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  line-height: 3rem;
+  border-bottom: 0.1rem solid #423e3a;
+}
+.to-do-title p {
+  display: inline-block;
+  font-weight: 600;
+  color: #253439;
+}
+.to-do-title i {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: auto 0.5rem;
+  background-image: url("../images/calendar.png");
+  background-size: 50% 50%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.to-do-list-show ul {
+  flex: 4;
+  margin: 0.8rem auto;
+  width: 20rem;
+  overflow: hidden;
+}
+.to-do-list-show li {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.to-do-list-add {
+  position: absolute;
+  top: 16rem;
+  display: flex;
+  flex-direction: column;
+  width: 23rem;
+  height: 28rem;
+  border-radius: 1rem;
+  padding: 3rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  overflow: hidden;
+}
+.to-do-list-add .to-do-addItem {
+  max-width: 20rem;
+  height: 24rem;
+  resize: none; /* disable resizing */
+  background: transparent;
+}
+/* 代办动画 */
+.push-active {
+  -webkit-animation: slide-in-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.push-leave {
+  -webkit-animation: slide-out 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-out 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* 添加代办动画 */
+.pull-active {
+  -webkit-animation: slide-in-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.pull-leave {
+  -webkit-animation: slide-out-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-out-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* 按钮模块 */
 .button {
   position: absolute;
-  bottom: 10rem;
+  bottom: 2rem;
   width: 4rem;
   height: 4rem;
   z-index: 1;
   background-color: transparent;
+  opacity: 0;
 }
 .button i {
   display: block;
@@ -106,18 +209,138 @@ body {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+.add-button {
+  bottom: 2rem;
+}
 .add-button i {
   background-image: url("../images/003-plus.png");
   background-size: 80% 80%;
   background-repeat: no-repeat;
 }
+
 .close-button {
+  bottom: 5.5rem;
+  right: 3rem;
+}
+.close-button i {
   background-image: url("../images/002-close.png");
   background-size: 60% 60%;
   background-repeat: no-repeat;
 }
 
+.slide-in {
+  -webkit-animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 .done {
   /* delete */
   text-decoration: line-through;
+}
+
+@-webkit-keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scaleY(100%);
+    transform-origin: top;
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scaleY(100%);
+    transform-origin: top;
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out-top {
+  0% {
+    -webkit-transform: scaleY(100%);
+    transform-origin: top;
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(30%);
+    transform-origin: top;
+    transform: scaleY(30%);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-top {
+  0% {
+    -webkit-transform: scaleY(100%);
+    transform-origin: top;
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(30%);
+    transform-origin: top;
+    transform: scaleY(30%);
+    opacity: 0;
+  }
 }

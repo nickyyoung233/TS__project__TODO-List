@@ -6,15 +6,15 @@ class BackDrop extends DOMTemplate {
   private backImg: string = "";
   private _isFuzzy = true;
   private _baseClass: string;
-  private _cleanClass = "backdrop-fuzzy";
-  private _fuzzyClass = "backdrop-clean";
+  private _cleanClass = "backdrop-clean";
+  private _fuzzyClass = "backdrop-fuzzy";
 
   private constructor(img: string) {
     super("backdrop");
     this._baseClass = this.element.className;
     this.backImg = img;
     this.element.style.backgroundImage = `url(${this.backImg})`;
-    // console.log(this.element);
+    this.triggerFuzzy(this._isFuzzy);
   }
   static getInstance(img: string) {
     if (!BackDrop.instance) {
