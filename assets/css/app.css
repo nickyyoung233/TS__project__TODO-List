@@ -64,6 +64,7 @@ textarea {
   background-repeat: no-repeat;
   box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
   border-radius: 0.4rem;
+  background-image: url("../images/background.jpg");
 }
 .backdrop-fuzzy {
   filter: blur(2px);
