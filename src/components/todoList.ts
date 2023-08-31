@@ -52,26 +52,41 @@ class TodoList {
     const input = this._todoAdd.element.querySelector(
       "#todoItem"
     ) as HTMLTextAreaElement;
-    if (this._list.length > 5) {
+    if (this._list.length === 5) {
       alert("别太贪心，完成以后再添加吧！");
+      return;
+    } else if (input.value.trim() === "") {
       return;
     } else {
       this._list.push({
         isDone: false,
         text: input.value,
       });
+      this.renderList();
     }
 
     input.value = "";
   }
-  //   removeItem(index: number) {}
+  removeItem(index: number) {
+    const li = document.querySelector(`#list_${index}`)!;
+    li.className = "done";
+    let timer = setTimeout(() => {
+      clearTimeout(timer);
+      this._list.splice(index, 1);
+      this.renderList();
+    }, 1000);
+  }
   renderList() {
     const input = this._todoShow.element.querySelector("ul")!;
-    let dom = "";
-    this._list.forEach((item) => {
-      !item.isDone ? (dom += `<li>${item.text}</li>`) : "";
+
+    input.innerHTML = "";
+    this._list.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.id = `list_${index}`;
+      li.innerHTML = `<span></span><a>${item.text}</a>`;
+      li.onclick = this.removeItem.bind(this, index);
+      !item.isDone ? input.appendChild(li) : "";
     });
-    input.innerHTML = dom;
   }
 }
 const todoList = TodoList.getInstance();

@@ -23,7 +23,6 @@ const showButton = new Button(
 );
 const addButton = new Button("add-button", () => {
   todoList.addItem();
-  todoList.renderList();
   toggleHandler();
   showButton.setActive(true);
   addButton.setActive(false);

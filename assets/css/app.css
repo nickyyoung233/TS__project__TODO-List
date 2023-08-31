@@ -108,7 +108,7 @@ textarea {
   height: 12rem;
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.8);
-  z-index: 1;
+  z-index: 2;
 }
 .to-do-title {
   display: flex;
@@ -138,8 +138,26 @@ textarea {
   width: 20rem;
   overflow: hidden;
 }
+
 .to-do-list-show li {
+  display: flex;
+  width: 20rem;
+  height: 1rem;
+  line-height: 1rem;
   font-size: 1rem;
+  margin: 0.2rem;
+  cursor: pointer;
+}
+
+.to-do-list-show span {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  /* background-color: #c3c3c3a1; */
+  border: 1px solid #423e3a;
+}
+.to-do-list-show a {
+  width: 16rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -236,6 +254,8 @@ textarea {
 .done {
   /* delete */
   text-decoration: line-through;
+  -webkit-animation: swap-out 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: swap-out 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @-webkit-keyframes slide-in {
@@ -341,6 +361,25 @@ textarea {
     -webkit-transform: scaleY(30%);
     transform-origin: top;
     transform: scaleY(30%);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes swap-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+@keyframes swap-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    width: 0;
     opacity: 0;
   }
 }
