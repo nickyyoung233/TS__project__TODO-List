@@ -115,7 +115,7 @@
             this.element.className = `${this._baseClass} ${this.class}`;
           }
         }
-        const imgLocation = "../assets/images/background.jpg";
+        const imgLocation = "./assets/images/background.jpg";
         const backDropInstance = BackDrop.getInstance(imgLocation);
         exports["default"] = backDropInstance;
 
